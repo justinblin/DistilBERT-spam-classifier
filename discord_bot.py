@@ -1,3 +1,5 @@
+print("Starting Discord spam detection bot...")
+
 import os
 from dotenv import load_dotenv
 import discord
@@ -6,6 +8,8 @@ import discord.utils
 
 load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
+
+print(BOT_TOKEN)
 
 # enable members intent so we can locate moderator members by role.
 intents = discord.Intents.default()
@@ -17,7 +21,7 @@ client = discord.Client(intents=intents)
 
 # SETUP MODEL
 tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
-classifier = pipeline('text-classification', model='./spam_transformer_model', tokenizer=tokenizer, top_k=1)
+classifier = pipeline('text-classification', model='./spam_transformer_model', tokenizer=tokenizer, top_k=1, device=-1)
 
 
 # Send DM to this role

@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 import discord
-import torch
 from transformers import pipeline, AutoTokenizer
 import discord.utils
 
@@ -17,9 +16,8 @@ client = discord.Client(intents=intents)
 
 
 # SETUP MODEL
-device = 0 if torch.cuda.is_available() else -1
 tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
-classifier = pipeline('text-classification', model='./spam_transformer_model', tokenizer=tokenizer, device=device, top_k=1)
+classifier = pipeline('text-classification', model='./spam_transformer_model', tokenizer=tokenizer, top_k=1)
 
 
 # Send DM to this role

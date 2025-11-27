@@ -1,0 +1,5 @@
+.venv
+.env
+results
+tmp
+spam_transformer_model
